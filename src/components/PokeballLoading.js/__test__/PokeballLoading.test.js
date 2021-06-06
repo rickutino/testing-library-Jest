@@ -11,4 +11,15 @@ describe('PokeballLoading', () => {
     expect(image).toBeInTheDocument();
     expect(image.width).toBe(200);
   });
+
+  test('message should change', () => {
+    const { queryByText, rerender } = render(<PokeballLoading />);
+    const newMessage = 'New Message';
+
+    expect(queryByText(newMessage)).not.toBeInTheDocument();
+
+    rerender(<PokeballLoading message={newMessage}/>);
+
+    expect(queryByText(newMessage)).toBeInTheDocument();
+  });
 });
