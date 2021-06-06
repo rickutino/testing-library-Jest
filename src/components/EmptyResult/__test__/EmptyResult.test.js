@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import EmptyResult from '../EmptyResult';
 
 describe('EmptyResult', () => {
+
   test('should render with default props', () => {
     const { container, getByAltText, getByText } = render(<EmptyResult/>);
     const defaultMessage = 'Oops... Não encontramos nada.';
@@ -21,5 +22,13 @@ describe('EmptyResult', () => {
     const { getByText } = render(<EmptyResult message={newMessage}/>);
 
     expect(getByText(newMessage)).toBeInTheDocument();
+  });
+
+  test('image should have correct width', () => {
+    const newWidth = 300;
+    const { getByAltText } = render(<EmptyResult width={newWidth} />);
+    const image = getByAltText(/empty result/i);
+
+    expect(image.width).toBe(newWidth);
   });
 });
