@@ -15,4 +15,11 @@ describe('EmptyResult', () => {
     expect(getByText(defaultMessage)).toBeInTheDocument();
     expect(image.width).toBe(defaultWidth);
   });
+
+  test('should render with message', () => {
+    const newMessage = 'Message de text';
+    const { getByText } = render(<EmptyResult message={newMessage}/>);
+
+    expect(getByText(newMessage)).toBeInTheDocument();
+  });
 });
