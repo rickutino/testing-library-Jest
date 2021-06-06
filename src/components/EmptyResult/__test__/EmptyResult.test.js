@@ -1,35 +1,34 @@
-import React from "react";
-import {render} from "@testing-library/react";
-import EmptyResult from "../EmptyResult";
+import React from 'react';
+import { render } from '@testing-library/react';
+import EmptyResult from '../EmptyResult';
 
 describe('EmptyResult', () => {
-    test('should render with default props', () => {
-        const {container, getByAltText, getByText} = render(<EmptyResult/>);
-        const defaultMessage = 'Oops... Não encontramos nada.';
-        const defaultWidth = 200;
 
-        const image = getByAltText(/empty result/i);
+  test('should render with default props', () => {
+    const { container, getByAltText, getByText } = render(<EmptyResult/>);
+    const defaultMessage = 'Oops... Não encontramos nada.';
+    const defaultWidth = 200;
 
-        expect(container).toBeInTheDocument();
-        expect(image).toBeInTheDocument();
-        expect(getByText(defaultMessage)).toBeInTheDocument();
-        expect(image.width).toBe(defaultWidth);
-    });
+    const image = getByAltText(/empty result/i);
 
-    test('should render with message', () => {
-        const message = 'Mensagem de teste.'
+    expect(container).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
+    expect(getByText(defaultMessage)).toBeInTheDocument();
+    expect(image.width).toBe(defaultWidth);
+  });
 
-        const {getByText} = render(<EmptyResult message={message}/>);
+  test('should render with message', () => {
+    const newMessage = 'Message de text';
+    const { getByText } = render(<EmptyResult message={newMessage}/>);
 
-        expect(getByText(message)).toBeInTheDocument();
-    });
+    expect(getByText(newMessage)).toBeInTheDocument();
+  });
 
-    test('image should have correct width', () => {
-        const width = 300;
+  test('image should have correct width', () => {
+    const newWidth = 300;
+    const { getByAltText } = render(<EmptyResult width={newWidth} />);
+    const image = getByAltText(/empty result/i);
 
-        const {getByAltText} = render(<EmptyResult width={width}/>);
-        const image = getByAltText(/empty result/i);
-
-        expect(image.width).toBe(width);
-    });
+    expect(image.width).toBe(newWidth);
+  });
 });
