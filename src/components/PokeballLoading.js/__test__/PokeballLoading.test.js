@@ -22,4 +22,13 @@ describe('PokeballLoading', () => {
 
     expect(queryByText(newMessage)).toBeInTheDocument();
   });
+  
+  test('image should have correct size', () => {
+    const size = 300;
+    const { getByAltText } = render(<PokeballLoading size={size}/>);
+    const image = getByAltText(/Pokeball Loading/i);
+
+    expect(image.width).toBe(size);
+    expect(image.height).toBe(size);
+  });
 });
